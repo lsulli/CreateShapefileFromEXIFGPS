@@ -5,7 +5,8 @@ Type indipendent: tested with Canon and Panasonic
 
 Usage: Copy in image directory and run with python idle, output shapefile will be create in the same directory
 
-Request (see licence)
+Run only with: 
 Python 3x
 exiftool.exe - http://www.sno.phy.queensu.ca/~phil/exiftool/
+exiftool.py - http://smarnach.github.io/pyexiftool/
 shapefile.py - https://github.com/GeospatialPython/pyshp
