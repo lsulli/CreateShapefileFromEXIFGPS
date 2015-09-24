@@ -1,5 +1,6 @@
 # CreateShapefileFromEXIFGPS
-Python script to create a point shapefile from GPS data recorded in EXIF data of jpg image file (if exist). 
+Python script to create a point shapefile (with .prj WGS84 geographic coordinate) from GPS data recorded in EXIF data of jpg image file (if exist). 
+
 Type indipendent: tested with Canon and Panasonic
 
 Usage: Copy in image directory and run with python idle, output shapefile will be create in the same directory
