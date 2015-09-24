@@ -1,4 +1,4 @@
-#ver 0.1 - 2015.09.24
+#ver 0.6 - 2015.09.24
 #script to create point shapefile from EXIF GPS data 
 #copy in image directory and run, output shapefile will be create in the same directory
 #Request: 
