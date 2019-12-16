@@ -15,7 +15,18 @@ import sys
 import zipfile
 from subprocess import call
 
+# exiftool full path
+exiftoolpath = "C:\exiftool\exiftool.exe"
+
+if os.path.exists(exiftoolpath):
+	exiftool.executable = exiftoolpath
+else:
+	print('Controllare la path di installazione di exiftool.exe')
+	sys.exit()
+	
 mydir ='.'
+
+#---------- START Comment this code to preserve gps data in exif -------------
 
 # extract gpx file from zip if exist
 for root, dirs, files in os.walk(mydir):
@@ -24,23 +35,14 @@ for root, dirs, files in os.walk(mydir):
                 if  name.endswith(".ZIP") or name.endswith(".zip"):
                     with zipfile.ZipFile( f, 'r') as myzip:
                         myzip.extractall(root)
-
-# exiftool full path
-exiftoolpath = "C:\exiftool\exiftool.exe"
-
-
-if os.path.exists(exiftoolpath):
-	exiftool.executable = exiftoolpath
-else:
-	print('Controllare la path di installazione di exiftool.exe')
-	sys.exit()
-
 #subprocess call() to execute exiftool batch with gpx file: WARNING overwrite all gps data
 
 call('C:\exiftool\exiftool.exe -overwrite_original_in_place -Comment="" *.jpg')
 call('C:\exiftool\exiftool.exe -overwrite_original_in_place -gps:all= .')
 call('C:\exiftool\exiftool.exe -overwrite_original_in_place -geotag "*.gpx" -geosync=-0 . ')#-geosync=-0!!!!
-	
+
+#---------- END Comment this code to preserve gps data in exif -------------
+
 #create shapefile structure
 w = shapefile.Writer(shapefile.POINT)
 w.field('Filename','C','40')
@@ -67,8 +69,6 @@ mylistfiles = []
 for myfiles in os.listdir(mydir):
 	if myfiles.endswith(".JPG") or myfiles.endswith(".jpg"):
 		mylistfiles.append(myfiles)
-#		pathtot=absmydir+"/"+jpgfile
-
 
 with exiftool.ExifTool() as et:
 	try:
