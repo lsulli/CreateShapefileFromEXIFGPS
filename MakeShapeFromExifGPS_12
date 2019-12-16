@@ -8,6 +8,7 @@
 #exiftool.py - https://github.com/smarnach/pyexiftool/blob/master/exiftool.py
 #shapefile.py - https://github.com/GeospatialPython/pyshp
 #
+
 import shapefile #copy shapefile.py in ./python3x/lib
 import os
 import exiftool #copy exiftool.py in ./python3x/lib
@@ -15,7 +16,7 @@ import sys
 import zipfile
 from subprocess import call
 
-# exiftool full path
+# exiftool.exe full path
 exiftoolpath = "C:\exiftool\exiftool.exe"
 
 if os.path.exists(exiftoolpath):
@@ -25,6 +26,8 @@ else:
 	sys.exit()
 	
 mydir ='.'
+
+xGPSDate = "999"
 
 #---------- START Comment this code to preserve gps data in exif -------------
 
@@ -129,7 +132,7 @@ for d in metadata:
 		w.record(xFilename,pathtot,xGPSDate,xTimeOrig,mylongdd,mylatdd,xGPSMapDatum,xGPSDOP,xNumSat,xFL35mm,xSTRUMENTO,xGPSImgdir,xGPSElev)
 
 #create name of shapefile from last date in exif file list or wait for input
-if xGPSDate != 999:
+if xGPSDate != "999":
 	sGPSDate=xGPSDate.replace(':','_')#get GPS date of last image in dir
 else:
 	var = input ("Input date time yyyy_mm_dd:")
